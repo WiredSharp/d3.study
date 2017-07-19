@@ -1,0 +1,12 @@
+.DS_STORE
+*.ipr
+*.iml
+*.iws
+*.flags.json
+*.log
+dist/
+version.properties
+.sass-cache
+.idea
+.project
+node_modules/
