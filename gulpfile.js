@@ -15,6 +15,7 @@ const pathes = {
         js: ["src/js/**/*.js"],
         html: ["src/**/*.html", "src/**/*.htm"],
         images: ["src/images/**/*"],
+        data: ["data/**/*"],
         target: "./dist"
       };
 
@@ -71,9 +72,14 @@ gulp.task('js', function(){
     .pipe(browserSync.reload({stream:true}))
 });
 
-gulp.task('build', ['html', 'js', 'libs']);
+gulp.task('data', function(){
+  gulp.src(pathes.data)
+    .pipe(gulp.dest(pathes.target + '/data/'))
+})
 
-gulp.task('default', ['browser-sync'], function(){
+gulp.task('build', ['data', 'html', 'js', 'css', 'libs']);
+
+gulp.task('default', ['build', 'browser-sync'], function(){
   gulp.watch(pathes.html, ['html']);
   gulp.watch(pathes.css, ['css']);
   gulp.watch(pathes.js, ['js']);
